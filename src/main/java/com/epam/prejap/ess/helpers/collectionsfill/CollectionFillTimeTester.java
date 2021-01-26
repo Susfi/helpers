@@ -1,6 +1,8 @@
 package com.epam.prejap.ess.helpers.collectionsfill;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -8,6 +10,11 @@ import java.util.stream.Stream;
 public class CollectionFillTimeTester {
     private static final int NUMBER_OF_ELEMENTS = 1_000_000;
 
+    private static List<Object> generateListUsingFill() {
+        List<Object> list = new ArrayList<>(Arrays.asList(new Object[NUMBER_OF_ELEMENTS]));
+        Collections.fill(list, new Object());
+        return list;
+    }
 
     private static List<Object> generateListUsingStream(){
         return Stream.generate(String::new)
