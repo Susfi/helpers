@@ -11,6 +11,10 @@ public class CollectionFillTimeTester {
     private static final int NUMBER_OF_ELEMENTS = 1_000_000;
 
 
+    private static List<Object> generateListUsingCollectionsNCopies(){
+        return Collections.nCopies(NUMBER_OF_ELEMENTS, new Object());
+    }
+
     private static List<Object> generateListUsingArraysFill() {
         Object[] data = new Object[NUMBER_OF_ELEMENTS];
         Arrays.fill(data,new Object());
