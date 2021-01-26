@@ -10,6 +10,13 @@ import java.util.stream.Stream;
 public class CollectionFillTimeTester {
     private static final int NUMBER_OF_ELEMENTS = 1_000_000;
 
+
+    private static List<Object> generateListUsingArraysFill() {
+        Object[] data = new Object[NUMBER_OF_ELEMENTS];
+        Arrays.fill(data,new Object());
+        return Arrays.asList(data);
+    }
+
     private static List<Object> generateListUsingFill() {
         List<Object> list = new ArrayList<>(Arrays.asList(new Object[NUMBER_OF_ELEMENTS]));
         Collections.fill(list, new Object());
