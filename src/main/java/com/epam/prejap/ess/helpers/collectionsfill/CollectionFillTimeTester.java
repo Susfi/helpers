@@ -13,7 +13,8 @@ public class CollectionFillTimeTester {
 
     public static void main(String[] args) {
         long startTime, endTime;
-        long timeArraysFill = 0, timeNCopies = 0, timeStream = 0, timeForLoop = 0, timeListFill = 0;
+        long timeArraysFill = 0, timeNCopies = 0, timeStream = 0, timeForLoop = 0, timeListFill = 0,
+                timeClone = 0;
 
         for(int i = 0; i < NUMBER_OF_TRIES; i++) {
 
@@ -43,11 +44,17 @@ public class CollectionFillTimeTester {
             ArrayList<Object> arrayListFromLoop = new ArrayList<>(generateListUsingLoop());
             endTime = System.currentTimeMillis();
             timeForLoop += endTime - startTime;
+
+            startTime = System.currentTimeMillis();
+            ArrayList<Object> arrayListFromClone = (ArrayList<Object>) arrayListFromArraysFill.clone();
+            endTime = System.currentTimeMillis();
+            timeClone += endTime - startTime;
         }
 
         String resultMessage = "Test: list of " + NUMBER_OF_ELEMENTS +
                 " elements, average time in ms after " + NUMBER_OF_TRIES + " tries" + "\n" +
                 "Methode\ttime" + "\n" +
+                "clone " + timeClone / NUMBER_OF_TRIES + "\n" +
                 "NCopies " + timeNCopies / NUMBER_OF_TRIES + "\n" +
                 "Arrays.fill " + timeArraysFill / NUMBER_OF_TRIES + "\n" +
                 "List.fill " + timeListFill / NUMBER_OF_TRIES + "\n" +
