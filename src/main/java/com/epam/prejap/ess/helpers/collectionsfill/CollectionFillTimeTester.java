@@ -6,10 +6,51 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
+/**
+ * <p>Collections: fill, nCopies, addAll – and others how to quickly fill a collection?</p>
+ *
+ * Comparison of performance of different approaches to create new collection and fill it with elements
+ * The test are done using list
+ *
+ * Result example
+ * Test: list of 1000000 elements, average time in ms after 10 tries
+ * Methode	time
+ * clone 2
+ * addALL 8
+ * NCopies 11
+ * addAll(NCopies) 12
+ * Arrays.fill 16
+ * List.fill 19
+ * For loop 106
+ * stream 91
+ *
+ * clone(): The fastest way to fill a Collection with elements is to clone existing one, however we have no control
+ * over number of elements, nor what those elements are. We are also limited by what collections exist in the program.
+ * Clone() creates a shallow copy of Collection, so it does not creates copies of objects.
+ * Clone() is useful when we want to make changes to Collection (i.e. sort it) without affecting the original.
+ *
+ * addAll(): This method appends all of the elements in the specified Collection to the end of the list. This method
+ * does not create copies of objects, only copies of references. Slightly slower than clone() but can be used to add
+ * elements to existing collection.
+ *
+ * Collections.fill(): Replaces all of the elements of the specified list with the specified element. It does not
+ * change the number of elements in the collection, so it cannot be used to initialize collection without fixed size.
+ *
+ * Collection.nCopies(): creates an immutable List containing the specified number of copies of the given object.
+ * It can be used to initialize a newly created List, or to grow an existing List by using it with adAll() method.
+ * It does not create copies of given object, only the copies of the references to a single object so it is memory
+ * efficient
+ *
+ * Creating a list with for loop or stream are the slowest options, and they are memory inefficient as they create
+ * multiple copies of given object.
+ *
+ * Conclusion: the best way to create a list with n elements, or append existing list by n elements, is to use method
+ * nCopies() from Collections framework, unless desired effect is to have a list of copies of object.
+ * @author Paweł Susfał
+ */
 public class CollectionFillTimeTester {
     private static final int NUMBER_OF_ELEMENTS = 1_000_000;
-    private static final int NUMBER_OF_TRIES = 1;
+    private static final int NUMBER_OF_TRIES = 10;
 
     public static void main(String[] args) {
         long startTime, endTime;
@@ -110,13 +151,3 @@ public class CollectionFillTimeTester {
         return list;
     }
 }
-/*
-result example
-Test: list of 1000000 elements, average time in ms after 1 tries
-Methode	time
-NCopies 15
-Arrays.fill 18
-List.fill 22
-For loop 87
-stream 106
- */
