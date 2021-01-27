@@ -48,7 +48,7 @@ import java.util.stream.Stream;
  * nCopies() from Collections framework, unless desired effect is to have a list of copies of object.
  * @author Paweł Susfał
  */
-public class CollectionFillTimeTester {
+class CollectionFillTimeTester {
     private static final int NUMBER_OF_ELEMENTS = 1_000_000;
     private static final int NUMBER_OF_TRIES = 10;
 
