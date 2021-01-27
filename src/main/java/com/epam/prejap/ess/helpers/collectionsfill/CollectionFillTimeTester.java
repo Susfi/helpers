@@ -17,7 +17,7 @@ import java.util.stream.Stream;
  * Methode	time
  * clone 2
  * addALL 8
- * NCopies 11
+ * nCopies 11
  * addAll(NCopies) 12
  * Arrays.fill 16
  * List.fill 19
@@ -26,8 +26,8 @@ import java.util.stream.Stream;
  *
  * clone(): The fastest way to fill a Collection with elements is to clone existing one, however we have no control
  * over number of elements, nor what those elements are. We are also limited by what collections exist in the program.
- * Clone() creates a shallow copy of Collection, so it does not creates copies of objects.
- * Clone() is useful when we want to make changes to Collection (i.e. sort it) without affecting the original.
+ * clone() creates a shallow copy of Collection, so it does not creates copies of objects.
+ * clone() is useful when we want to make changes to Collection (i.e. sort it) without affecting the original.
  *
  * addAll(): This method appends all of the elements in the specified Collection to the end of the list. This method
  * does not create copies of objects, only copies of references. Slightly slower than clone() but can be used to add
@@ -109,11 +109,11 @@ public class CollectionFillTimeTester {
                 "Methode\ttime" + "\n" +
                 "clone " + timeClone / NUMBER_OF_TRIES + "\n" +
                 "addALL " + timeAddAll / NUMBER_OF_TRIES + "\n" +
-                "NCopies " + timeNCopies / NUMBER_OF_TRIES + "\n" +
-                "addAll(NCopies) " + timeAddAllNCopies / NUMBER_OF_TRIES + "\n" +
+                "nCopies " + timeNCopies / NUMBER_OF_TRIES + "\n" +
+                "addAll(nCopies) " + timeAddAllNCopies / NUMBER_OF_TRIES + "\n" +
                 "Arrays.fill " + timeArraysFill / NUMBER_OF_TRIES + "\n" +
                 "List.fill " + timeListFill / NUMBER_OF_TRIES + "\n" +
-                "For loop " + timeForLoop / NUMBER_OF_TRIES + "\n" +
+                "for loop " + timeForLoop / NUMBER_OF_TRIES + "\n" +
                 "stream " + timeStream / NUMBER_OF_TRIES + "\n";
 
         System.out.println(resultMessage);
