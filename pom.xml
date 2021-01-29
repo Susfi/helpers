@@ -6,15 +6,15 @@
 
     <groupId>com.epam.prejap.ess</groupId>
     <artifactId>helpers</artifactId>
-    <version>0.9</version>
-    <name>Java Essentail Classes :: Helpers</name>
+    <version>1.1</version>
+    <name>Java Essential Classes :: Helpers</name>
     <description>Solutions for the task about helpers</description>
     <url>https://careers.epam-poland.pl/training/juniors-java-online-program</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <project.java.version>11</project.java.version>
+        <project.java.version>15</project.java.version>
         <maven.compiler.release>${project.java.version}</maven.compiler.release>
         <version.maven>3.6.0</version.maven>
         <!-- plugin versions should go here, so below they can be omitted -->
@@ -28,6 +28,8 @@
         <version.jmh>1.9.3</version.jmh>
         <version.javax.annotation>1.3.2</version.javax.annotation>
         <version.common.lang3>3.11</version.common.lang3>
+        <version.assertj>3.18.0</version.assertj>
+        <version.mockito>3.2.4</version.mockito>
     </properties>
 
     <dependencies>
@@ -37,7 +39,6 @@
             <version>${version.testng}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-core</artifactId>
@@ -48,17 +49,27 @@
             <artifactId>jmh-generator-annprocess</artifactId>
             <version>${version.jmh}</version>
         </dependency>
-
         <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
             <version>${version.javax.annotation}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${version.common.lang3}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${version.assertj}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${version.mockito}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -88,6 +99,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${version.plugin.maven.compiler}</version>
+                <configuration>
+                    <compilerArgs>--enable-preview</compilerArgs>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -99,7 +113,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${version.plugin.maven.surefire}</version>
                 <configuration>
-                    <argLine>-XX:+UnlockExperimentalVMOptions -XX:+UseEpsilonGC -Dtestng.dtd.http=true -Xmx256m</argLine>
+                    <argLine>--enable-preview -XX:+UnlockExperimentalVMOptions -XX:+UseEpsilonGC -Dtestng.dtd.http=true -Xmx256m</argLine>
                 </configuration>
             </plugin>
             <plugin>
